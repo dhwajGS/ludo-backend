@@ -1,0 +1,23 @@
+{
+  "name": "ludo-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "express": "^4.17.1",
+    "passport-google-oauth": "^2.0.0",
+    "pg": "^8.2.1",
+    "sequelize": "^6.2.3"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.10.3"
+  }
+}
