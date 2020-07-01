@@ -1,21 +1,19 @@
- import { sequelize } from "./models";
-const express = require("express");
-import { Player } from './models/player'
+import { sequelize } from "./db/models";
+import chalk from "chalk";
+import express from "express";
+import router from "./routes";
 const PORT = 3000;
 const app = express();
-
-sequelize.sync().then(() => {
-  app.listen(PORT, () => {
-    console.log("Application is running on port" + PORT);
-    console.log('sequelize', sequelize.models.Player)
-    sequelize.models.Player.create({
-      playerId: "10",
-      playerName: "Dhwaj",
-      currentPosition: "R1",
-      tokenId: "R1",
-      color: "red",
-    }).then((player) => console.log('player', player))
-    .catch(error => console.log('error', error))
-  });
-});
-
+app.use("/", router);
+const connect = async () => {
+  try {
+    console.log(chalk.blue("Sync in progress"))
+    await sequelize.sync();
+    app.listen(PORT, () =>
+      console.log(chalk.yellow("Application is running on port " + PORT))
+    );
+  } catch (error) {
+    console.log(chalk.yellow("error", error));
+  }
+};
+connect();
